@@ -11,8 +11,8 @@ Support the program with appropriate functions for each of the above
 operations
 */
 
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #define size 10
 
 void cqinsert(char queue[], int *rear, int *count);
@@ -23,33 +23,33 @@ void main()
 {
 	char queue[size];
 	int front = 0, rear = -1, ch, count = 0;
-	for(;;)
+	for (;;)
 	{
 		printf("\nMenu\n");
 		printf("1. Insert\n2. Delete\n3. Display\n4. Exit\n");
 		scanf("%d", &ch);
-		switch(ch)
+		switch (ch)
 		{
-			case 1:
-				if(count == size)
-					printf("Queue is Full\n");
-				else
-					cqinsert(queue, &rear, &count);
-				break;
-			case 2:
-				if(count == 0)
-					printf("Queue is Empty\n");
-				else
-					cqdelete(queue, &front, &count);
-				break;
-			case 3:
-				if(count == 0)
-					printf("Queue is Empty\n");
-				else
-					display(queue, front, count);
-				break;
-			case 4:
-				exit(0);
+		case 1:
+			if (count == size)
+				printf("Queue is Full\n");
+			else
+				cqinsert(queue, &rear, &count);
+			break;
+		case 2:
+			if (count == 0)
+				printf("Queue is Empty\n");
+			else
+				cqdelete(queue, &front, &count);
+			break;
+		case 3:
+			if (count == 0)
+				printf("Queue is Empty\n");
+			else
+				display(queue, front, count);
+			break;
+		case 4:
+			exit(0);
 		}
 	}
 }
@@ -75,7 +75,7 @@ void display(char queue[], int front, int count)
 {
 	int i;
 	printf("The Characters are\n");
-	for(i=0; i<count; i++)
+	for (i = 0; i < count; i++)
 	{
 		printf("%c\t", queue[front]);
 		front = (front + 1) % size;

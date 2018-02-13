@@ -10,8 +10,8 @@ e. Demonstrate how this DLL can be used as Double Ended Queue
 f. Exit
 */
 
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct node
 {
@@ -37,51 +37,51 @@ NODE *getNode();
 void main()
 {
 	int ch;
-	HEAD *head = (HEAD *) malloc(sizeof(HEAD));
+	HEAD *head = (HEAD *)malloc(sizeof(HEAD));
 	head->count = 0;
 	head->llink = NULL;
 	head->rlink = NULL;
-	for(;;)
+	for (;;)
 	{
 		printf("\n\nMenu\n");
 		printf("\n1. Insert Front\n2. Insert Rear\n3. Delete Front\n4. Delete Rear\n5. Display\n6. Exit\n");
 		scanf("%d", &ch);
-		switch(ch)
+		switch (ch)
 		{
-			case 1:
-				insfront(head);
-				break;
-			case 2:
-				insrear(head);
-				break;
-			case 3:
-				if(head->rlink == NULL)
-					printf("List Empty");
-				else
-					delfront(head);
-				break;
-			case 4:
-				if(head->rlink == NULL)
-					printf("List Empty");
-				else
-					delrear(head);
-				break;
-			case 5:
-				if(head->rlink == NULL)
-					printf("List Empty");
-				else
-					display(head);
-				break;
-			case 6:
-				exit(0);
+		case 1:
+			insfront(head);
+			break;
+		case 2:
+			insrear(head);
+			break;
+		case 3:
+			if (head->rlink == NULL)
+				printf("List Empty");
+			else
+				delfront(head);
+			break;
+		case 4:
+			if (head->rlink == NULL)
+				printf("List Empty");
+			else
+				delrear(head);
+			break;
+		case 5:
+			if (head->rlink == NULL)
+				printf("List Empty");
+			else
+				display(head);
+			break;
+		case 6:
+			exit(0);
 		}
 	}
 }
 
 NODE *getNode()
 {
-	NODE *temp = (NODE *) malloc(sizeof(NODE));
-	if(temp == NULL)
+	NODE *temp = (NODE *)malloc(sizeof(NODE));
+	if (temp == NULL)
 	{
 		printf("No Memory\n");
 		exit(0);
@@ -95,7 +95,7 @@ void insfront(HEAD *head)
 	NODE *next = head->rlink;
 	printf("Enter Details such as SSN Name Department Designation Salary PhNo\n");
 	scanf("%s%s%s%s%f%ld", (new->ssn), (new->name), (new->department), (new->designation), &(new->sal), &(new->phno));
-	if(next != NULL)
+	if (next != NULL)
 		next->llink = new;
 	new->rlink = next;
 	head->rlink = new;
@@ -110,13 +110,13 @@ void insrear(HEAD *head)
 	scanf("%s%s%s%s%f%ld", (new->ssn), (new->name), (new->department), (new->designation), &(new->sal), &(new->phno));
 	(head->count)++;
 	new->rlink = NULL;
-	if(head->rlink == NULL)
+	if (head->rlink == NULL)
 	{
 		head->rlink = new;
 		return;
 	}
 	temp = head->rlink;
-	while(temp->rlink != NULL)
+	while (temp->rlink != NULL)
 		temp = temp->rlink;
 	temp->rlink = new;
 	new->llink = temp;
@@ -135,16 +135,16 @@ void delfront(HEAD *head)
 void delrear(HEAD *head)
 {
 	NODE *previous = NULL, *present = head->rlink;
-	if(present->rlink == NULL)
+	if (present->rlink == NULL)
 	{
 		head->rlink = NULL;
 	}
 	else
 	{
-		while(present->rlink != NULL)
+		while (present->rlink != NULL)
 		{
 			previous = present;
-			present =  present->rlink;
+			present = present->rlink;
 		}
 		previous->rlink = NULL;
 	}
@@ -159,10 +159,9 @@ void display(HEAD *head)
 	NODE *temp = head->rlink;
 	printf("Total Number of records are %d\n", head->count);
 	printf("SSN\tName\tDepartment\tDesignation\tSalary\t\tPhNo\n");
-	while(temp != NULL)
+	while (temp != NULL)
 	{
 		printf("%s\t%s\t%s\t\t%s\t\t%f\t%ld\n", (temp->ssn), (temp->name), (temp->department), (temp->designation), (temp->sal), (temp->phno));
 		temp = temp->rlink;
-
 	}
 }
